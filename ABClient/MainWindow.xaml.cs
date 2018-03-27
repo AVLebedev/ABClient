@@ -153,9 +153,16 @@ namespace ABClient
               logText.Content = connection.serverResponse;
               if (connection.Connected)
               {
+                  string btnText = "Отключиться";
+
                   connectBtn.Click -= connectBtn_Click;
                   connectBtn.Click += disconnect_Click;
-                  connectBtn.Content = "Отключиться";
+                  connectBtn.Content = btnText;
+
+                  var connectBtnTray = (MenuItem)(this.FindResource("TrayMenu") as ContextMenu).Items[1];
+                  connectBtnTray.Header = btnText;
+                  connectBtnTray.Click -= connectBtn_Click;
+                  connectBtnTray.Click += disconnect_Click;
               }
           }
           catch
@@ -172,9 +179,13 @@ namespace ABClient
               connection.CloseConnection(this.id);
               connectBtn.Click -= disconnect_Click;
               connectBtn.Click += connectBtn_Click;
-              connectBtn.Content = "Подключиться";
-              logText.Content = MessageConsts.DisconnectionSuccess;
-              ResetElements();
+              string btnText = "Подключиться";
+              connectBtn.Content = btnText;
+
+              var connectBtnTray = (MenuItem)(this.FindResource("TrayMenu") as ContextMenu).Items[1];
+              connectBtnTray.Header = btnText;
+              connectBtnTray.Click -= disconnect_Click;
+              connectBtnTray.Click += connectBtn_Click;
           }
           catch
           {
@@ -246,7 +257,7 @@ namespace ABClient
               TrayIcon.Icon = ABClient.Properties.Resources.icon; // изображение для трея
               // обратите внимание, за ресурсом с картинкой мы лезем в свойства проекта, а не окна,
               // поэтому нужно указать полный namespace
-              TrayIcon.Text = "Here is tray icon text."; // текст подсказки, всплывающей над иконкой
+              //TrayIcon.Text = "Here is tray icon text."; // текст подсказки, всплывающей над иконкой
               TrayMenu = Resources["TrayMenu"] as ContextMenu; // а здесь уже ресурсы окна и тот самый x:Key
 
               // сразу же опишем поведение при щелчке мыши, о котором мы говорили ранее

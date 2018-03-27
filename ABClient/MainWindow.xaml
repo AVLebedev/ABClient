@@ -6,13 +6,14 @@
     <Window.Resources>
         <ContextMenu x:Key="TrayMenu">
             <MenuItem Header="Свернуть в трей" Click="ShowHideMainWindow" />
-            <MenuItem Header="Подключиться к серверу" Click="connectBtn_Click" />
+            <!--<MenuItem Header="Подключиться" Click="{Binding ElementName=connectBtn, Path=Click, Mode=OneWay}" />-->
+            <MenuItem Header="Подключиться" Click="connectBtn_Click" />
             <Separator />
             <MenuItem Header="Выйти" Click="MenuExitClick" />
         </ContextMenu>
     </Window.Resources>
     <Grid>
-        <Button Name="alarmButton" Content="Подать сигнал" IsEnabled="{Binding }" HorizontalAlignment="Center" Margin="175,131,160,146" VerticalAlignment="Center" Width="182" Height="52" FontFamily="Verdana" FontSize="16" Click="Button_Click_1" HorizontalContentAlignment="Center">
+        <Button Name="alarmButton" Content="Подать сигнал" HorizontalAlignment="Center" Margin="175,131,160,146" VerticalAlignment="Center" Width="182" Height="52" FontFamily="Verdana" FontSize="16" Click="Button_Click_1" HorizontalContentAlignment="Center">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                     <GradientStop Color="#FFF3F3F3" Offset="0"/>
@@ -25,7 +26,7 @@
         <Label Name="messageLabel" Content="Нажмите ESC для отмены. Сигнал отправится через " HorizontalAlignment="Center" Margin="148,194,162,0" VerticalAlignment="Top" Width="296" HorizontalContentAlignment="Center"/>
         <Label Name="timeLabel" Content="10" HorizontalAlignment="Center" Margin="444,194,137,0" VerticalAlignment="Top" RenderTransformOrigin="0.134,0.792" Width="25" />
         <Label Name="secondsLabel" Content="секунд" HorizontalAlignment="Left" Margin="469,194,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Left" Width="57"/>
-        <Button Name="connectBtn" Content="Подключиться" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="16" Click="connectBtn_Click"/>
+        <Button x:Name="connectBtn" Content="Подключиться" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="16" Click="connectBtn_Click"/>
         <!--<local:MyTextBox PlaceHolder="IP" x:Name="addrTextBox"  HorizontalAlignment="Left" Height="25" Margin="10,10,0,0" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Top" Width="120" FontSize="14"></local:MyTextBox>
         <local:MyTextBox x:Name="portTextBox" HorizontalAlignment="Left" Height="25" Margin="148,10,0,0" TextWrapping="Wrap" PlaceHolder="Port" TextAlignment="Center" VerticalAlignment="Top" Width="41" FontSize="14"/>
         <Label Content=":" HorizontalAlignment="Left" Margin="130,6,0,0" VerticalAlignment="Top" FontSize="14"/>-->
