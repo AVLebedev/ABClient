@@ -15,7 +15,7 @@ namespace ABClient
     /// <summary>
     /// Предоставляет методы для сетевого взаимодействия клиента с сервером
     /// </summary>
-   public class ConnectWorker
+    public class ConnectWorker : IDisposable
     {
         // Ожидание нового пользователя
         //private string UserName = "Неизвестный";
@@ -31,6 +31,8 @@ namespace ABClient
 
         public string message { get; set; }
         public string serverResponse { get; set; }
+
+        private string clientId;
 
         /// <summary>
         /// Происходит при выходе из приложения-клиента
@@ -51,6 +53,7 @@ namespace ABClient
 
         public void InitializeConnection(string id)
         {
+            clientId = id;
             try
             {
                 // Получение локального IPv4
@@ -116,10 +119,13 @@ namespace ABClient
        /// </summary>
         public void CloseConnection()
         {
-            this.Connected = false;
-            swSender.Close();
-            srReceiver.Close();
-            tcpServer.Close();
+            if (this.Connected == true)
+            {
+                this.Connected = false;
+                swSender.Close();
+                srReceiver.Close();
+                tcpServer.Close();
+            }
         }
 
        /// <summary>
@@ -197,6 +203,11 @@ namespace ABClient
             {
                 ConnectionFailHandler();
             }
+        }
+
+        public void Dispose()
+        {
+            this.CloseConnection(clientId);
         }
     }
 }

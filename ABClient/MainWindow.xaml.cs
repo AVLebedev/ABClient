@@ -39,7 +39,6 @@ namespace ABClient
 
                 connection = new ConnectWorker();
                 connection.message = clientId.ToString() + MessageConsts.ConnectMessage;
-                Application.Current.Exit += new ExitEventHandler(connection.OnApplicationExit);
             }
             else
             {
@@ -355,5 +354,10 @@ namespace ABClient
           Close();
       }
 #endregion
+
+      private void Window_Closing(object sender, CancelEventArgs e)
+      {
+          connection.Dispose();
+      }
     }      
  }

@@ -38,15 +38,16 @@ namespace ABClient
                 MessageBox.Show("Введите код активации!");
             else
             {
-                ConnectWorker connection = new ConnectWorker() { message = clientId };
-           
-                //Подключаемся к серверу для активации
-                try
+                using (var connection = new ConnectWorker() { message = clientId })
                 {
-                    connection.InitializeConnection(clientId);
-                    connection.SendMessage(clientId + MessageConsts.ActivateMessage + "|" + activationCode);
-                    string serverResponse = connection.ListenServer();
-                    if (serverResponse == "1")
+
+                    //Подключаемся к серверу для активации
+                    try
+                    {
+                        connection.InitializeConnection(clientId);
+                        connection.SendMessage(clientId + MessageConsts.ActivateMessage + "|" + activationCode);
+                        string serverResponse = connection.ListenServer();
+                        if (serverResponse == "1")
                         {
                             using (StreamWriter writer = new StreamWriter("clientInfo.ini"))
                             {
@@ -60,17 +61,17 @@ namespace ABClient
                             main.Show();
                             this.Close();
                         }
-                        else if(serverResponse == "0")
+                        else if (serverResponse == "0")
                         {
                             MessageBox.Show(MessageConsts.ActivationFail);
+                        }
+
                     }
-                    
+                    catch
+                    {
+                        MessageBox.Show(MessageConsts.ActivationFail);
+                    }
                 }
-                catch
-                {
-                    MessageBox.Show(MessageConsts.ActivationFail);
-                }
-                
              }           
 
         }
