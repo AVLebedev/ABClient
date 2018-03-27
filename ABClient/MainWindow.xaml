@@ -26,9 +26,9 @@
         <Label Name="timeLabel" Content="10" HorizontalAlignment="Center" Margin="444,194,137,0" VerticalAlignment="Top" RenderTransformOrigin="0.134,0.792" Width="25" />
         <Label Name="secondsLabel" Content="секунд" HorizontalAlignment="Left" Margin="469,194,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Left" Width="57"/>
         <Button Name="connectBtn" Content="Подключиться" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="16" Click="connectBtn_Click"/>
-        <local:MyTextBox PlaceHolder="IP" x:Name="addrTextBox"  HorizontalAlignment="Left" Height="25" Margin="10,10,0,0" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Top" Width="120" FontSize="14"></local:MyTextBox>
+        <!--<local:MyTextBox PlaceHolder="IP" x:Name="addrTextBox"  HorizontalAlignment="Left" Height="25" Margin="10,10,0,0" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Top" Width="120" FontSize="14"></local:MyTextBox>
         <local:MyTextBox x:Name="portTextBox" HorizontalAlignment="Left" Height="25" Margin="148,10,0,0" TextWrapping="Wrap" PlaceHolder="Port" TextAlignment="Center" VerticalAlignment="Top" Width="41" FontSize="14"/>
-        <Label Content=":" HorizontalAlignment="Left" Margin="130,6,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <Label Content=":" HorizontalAlignment="Left" Margin="130,6,0,0" VerticalAlignment="Top" FontSize="14"/>-->
         <Label Name="logText" HorizontalContentAlignment="Right" HorizontalAlignment="Right" VerticalAlignment="Top" Width="326" FontStyle="Italic"/>
 
     </Grid>

@@ -38,7 +38,7 @@ namespace ABClient
                 MessageBox.Show("Введите код активации!");
             else
             {
-                ConnectWorker connection = new ConnectWorker() { ip = Properties.Resources.serverIp, message = clientId, port = Convert.ToInt32(Properties.Resources.port) };
+                ConnectWorker connection = new ConnectWorker() { message = clientId };
            
                 //Подключаемся к серверу для активации
                 try

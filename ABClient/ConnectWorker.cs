@@ -27,12 +27,9 @@ namespace ABClient
         // Необходимо задать форму на "отключенное" состояние из другого потока
         private delegate void CloseConnectionCallback(string strReason);
         private Thread thrMessaging;
-        private IPAddress ipAddr;
         public bool Connected;
 
         public string message { get; set; }
-        public string ip { get; set; }
-        public int port { get; set; }
         public string serverResponse { get; set; }
 
         /// <summary>
@@ -61,12 +58,13 @@ namespace ABClient
                 IPHostEntry ipEntry = System.Net.Dns.GetHostEntry(strHostName);
                 IPAddress[] addr = ipEntry.AddressList;
                 int i = 0;
-                ipAddr = addr[i];
+                IPAddress ipAddr = addr[i];
                 while (addr[i].AddressFamily != System.Net.Sockets.AddressFamily.InterNetwork)
                 {
                     i++;
                     ipAddr = addr[i];
                 }
+                int port = 1234;
                 // Конвертируем адрес
                 //ipAddr = IPAddress.Parse(ip);
                 // Старт соеднинения

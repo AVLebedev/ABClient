@@ -23,7 +23,6 @@ namespace ABClient
     public partial class MainWindow : Window
     {
         ConnectWorker connection;
-        private string serverIp;
 
         public MainWindow(string clientId)
         {
@@ -34,13 +33,11 @@ namespace ABClient
                 messageLabel.Visibility = System.Windows.Visibility.Hidden;
                 timeLabel.Visibility = System.Windows.Visibility.Hidden;
                 secondsLabel.Visibility = System.Windows.Visibility.Hidden;
-                portTextBox.Text = port;
-                addrTextBox.Text = serverIp;
-                logText.Content = MessageConsts.StartConnecting;
+                //portTextBox.Text = port;
+                //addrTextBox.Text = serverIp;
+                //logText.Content = MessageConsts.StartConnecting;
 
                 connection = new ConnectWorker();
-                connection.ip = serverIp;
-                connection.port = Convert.ToInt32(Properties.Resources.port);
                 connection.message = clientId.ToString() + MessageConsts.ConnectMessage;
                 Application.Current.Exit += new ExitEventHandler(connection.OnApplicationExit);
             }
