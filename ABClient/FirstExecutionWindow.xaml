@@ -1,0 +1,14 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:ABClient" x:Class="ABClient.FirstExecutionWindow"
+        Title="FirstExecutionWindow" Height="359.328" Width="544.03" ResizeMode="NoResize" Icon="Resources/icon.ico">
+    <Grid>
+
+        <local:MyTextBox PlaceHolder="серийный номер" x:Name="idTextBox"  HorizontalAlignment="Left" Height="25" Margin="91,155,0,0" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Top" Width="349" FontSize="14" FontStyle="Italic"/>
+        <Label x:Name="messageLabel" Content="Введите номер и код активации, выданные Вам при регистрации:" HorizontalAlignment="Center" Margin="50,119,49,0" VerticalAlignment="Top" Width="439" FontSize="14"/>
+        <Button Content="Продолжить" HorizontalAlignment="Right" Margin="0,0,25,21" VerticalAlignment="Bottom" Width="100" FontSize="14" Click="Button_Click"/>
+        <local:MyTextBox PlaceHolder="код активации" x:Name="codeTextBox"  HorizontalAlignment="Left" Height="25" Margin="91,185,0,0" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Top" Width="349" FontSize="14" FontStyle="Italic"/>
+
+    </Grid>
+</Window>
