@@ -89,6 +89,8 @@ namespace ABClient
 
             logText.Content = MessageConsts.NoConnection;
             connectBtn.Focus();
+
+            CancelAlarm();
         }
 
         /// <summary>
@@ -160,7 +162,7 @@ namespace ABClient
           }
       }
 
-      void CancelAlarm(object sender, EventArgs e)
+      void CancelAlarm(object sender = null, EventArgs e = null)
       {
           timer.Stop();
           alarmButton.Click -= CancelAlarm;
