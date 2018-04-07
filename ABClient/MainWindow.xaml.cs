@@ -54,6 +54,11 @@ namespace ABClient
 
         string id { get; set; }
 
+        /// <summary>
+        /// Обработчик тревожной кнопки
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             if (connection.Connected)
@@ -62,9 +67,28 @@ namespace ABClient
             }
             else
             {
-                logText.Content = MessageConsts.NoConnection;
-                connectBtn.Focus();
+                NoConnection();
             }
+        }
+
+        /// <summary>
+        /// Информирует пользователя о разрыве соединения с сервером
+        /// </summary>
+        public void NoConnection()
+        {
+            connection.CloseConnection(this.id);
+            connectBtn.Click -= disconnect_Click;
+            connectBtn.Click += connectBtn_Click;
+            string btnText = "Подключиться";
+            connectBtn.Content = btnText;
+
+            var connectBtnTray = (MenuItem)(this.FindResource("TrayMenu") as ContextMenu).Items[1];
+            connectBtnTray.Header = btnText;
+            connectBtnTray.Click -= disconnect_Click;
+            connectBtnTray.Click += connectBtn_Click;
+
+            logText.Content = MessageConsts.NoConnection;
+            connectBtn.Focus();
         }
 
         /// <summary>
@@ -149,7 +173,7 @@ namespace ABClient
           //ConnectToServer();
           try
           {
-              connection.InitializeConnection(this.id);
+              connection.InitializeConnection(this.id, this);
               logText.Content = connection.serverResponse;
               if (connection.Connected)
               {
@@ -165,7 +189,7 @@ namespace ABClient
                   connectBtnTray.Click += disconnect_Click;
               }
           }
-          catch
+          catch (IOException ex)
           {
               logText.Content = MessageConsts.ConnectionFail;
           }
@@ -175,17 +199,7 @@ namespace ABClient
       {
           try
           {
-              //connection.message = this.id.ToString() + MessageConsts.DisconnectMessage;
-              connection.CloseConnection(this.id);
-              connectBtn.Click -= disconnect_Click;
-              connectBtn.Click += connectBtn_Click;
-              string btnText = "Подключиться";
-              connectBtn.Content = btnText;
-
-              var connectBtnTray = (MenuItem)(this.FindResource("TrayMenu") as ContextMenu).Items[1];
-              connectBtnTray.Header = btnText;
-              connectBtnTray.Click -= disconnect_Click;
-              connectBtnTray.Click += connectBtn_Click;
+              NoConnection();
           }
           catch
           {

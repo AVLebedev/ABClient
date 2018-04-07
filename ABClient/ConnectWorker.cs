@@ -51,6 +51,13 @@ namespace ABClient
             }
         }
 
+        MainWindow mainWindow;
+        public void InitializeConnection(string id, MainWindow mainWindow)
+        {
+            this.mainWindow = mainWindow;
+            InitializeConnection(id);
+        }
+
         public void InitializeConnection(string id)
         {
             clientId = id;
@@ -157,8 +164,9 @@ namespace ABClient
 
         private void ConnectionFailHandler()
         {
-            this.serverResponse = MessageConsts.ConnectionFail;
             this.Connected = false;
+            this.serverResponse = MessageConsts.ConnectionFail;
+            mainWindow.Dispatcher.Invoke(new Action(() => { mainWindow.NoConnection(); }));
         }
 
         private void ReceiveMessages()
@@ -189,19 +197,20 @@ namespace ABClient
                 }
                 while (Connected)
                 {
-                    try
-                    {
+                    //try
+                    //{
                         serverResponse = srReceiver.ReadLine();
-                    }
-                    catch (IOException e)
-                    {
-                        return;
-                    }
+                    //}
+                    //catch (IOException e)
+                    //{
+                    //    return;
+                    //}
                 }
             }
-            catch
+            catch (IOException e)
             {
                 ConnectionFailHandler();
+                
             }
         }
 

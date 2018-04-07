@@ -11,7 +11,7 @@ namespace ABClient
         public const string ConnectionSuccess = "Соединение установлено";
         public const string ConnectionFail = "Не удалось подключиться к серверу";
         public const string DisconnectionSuccess = "Соединение успешно закрыто";
-        public const string DisconnectionFail = "При отключении от сервера произошла ошибка. Соединение разорвано";
+        public const string DisconnectionFail = "При отключении от сервера произошла ошибка. \nСоединение разорвано";
 
         public const string ActivationSuccess = "Активация прошла успешно. Удачного использования!";
         public const string ActivationFail = "Ошибка активации. Попробуйте снова.";
