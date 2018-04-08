@@ -159,7 +159,17 @@ namespace ABClient
 
               //Отправка сигнала на сервер
               connection.SendMessage(this.id.ToString() + MessageConsts.AlarmMessage);
+              /* ToDo: сделать вывод сообщения, что сигнал тревоги принят в МЧС.
+               * Внимание! Следить за отображением таймера, если в отдельном потоке
+              new System.Threading.Thread(new System.Threading.ThreadStart(ShowServerResponse));
+               */
           }
+      }
+
+      void ShowServerResponse() {
+          string serverResponse = connection.ListenServer();
+          if (serverResponse == "ok")
+              messageLabel.Content = MessageConsts.AlarmResponseOk;
       }
 
       void CancelAlarm(object sender = null, EventArgs e = null)

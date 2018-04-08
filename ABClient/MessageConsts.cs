@@ -22,6 +22,8 @@ namespace ABClient
         public const string ServerNotResponse = "Не удалось получить ответ от сервера";
         public const string UnactiveClient = "Клиент с текущим id не активирован на сервере";
 
+        public const string AlarmResponseOk = "Сигнал тревоги принят, ожидайте бригаду";
+
         public const string ConnectMessage = "|connect";
         public const string DisconnectMessage = "|disconnect";
         public const string AlarmMessage = "|alarm";

@@ -166,7 +166,8 @@ namespace ABClient
         {
             this.Connected = false;
             this.serverResponse = MessageConsts.ConnectionFail;
-            mainWindow.Dispatcher.Invoke(new Action(() => { mainWindow.NoConnection(); }));
+            if (mainWindow != null)
+                mainWindow.Dispatcher.Invoke(new Action(() => { mainWindow.NoConnection(); }));
         }
 
         private void ReceiveMessages()
@@ -177,23 +178,26 @@ namespace ABClient
                 srReceiver = new StreamReader(tcpServer.GetStream());
                 // Если символ ответа 1, то подключились
                 string ConResponse = srReceiver.ReadLine();
-                if (ConResponse[0] == '1')
+                if (ConResponse != null && ConResponse.Length > 0)
                 {
-                    // Обновление состояния формы
-                    serverResponse = MessageConsts.ConnectionSuccess;
-                }
-                else if (ConResponse[0] == '0')
-                {
-                    serverResponse = MessageConsts.UnactiveClient;
-                    CloseConnection();
-                    return;
-                }
-                else
-                {
-                    string Reason = MessageConsts.NoConnection;
-                    Reason += ConResponse.Substring(2, ConResponse.Length - 2);
-                    serverResponse = Reason;
-                    return;
+                    if (ConResponse[0] == '1')
+                    {
+                        // Обновление состояния формы
+                        serverResponse = MessageConsts.ConnectionSuccess;
+                    }
+                    else if (ConResponse[0] == '0')
+                    {
+                        serverResponse = MessageConsts.UnactiveClient;
+                        CloseConnection();
+                        return;
+                    }
+                    else
+                    {
+                        string Reason = MessageConsts.NoConnection;
+                        Reason += ConResponse.Substring(2, ConResponse.Length - 2);
+                        serverResponse = Reason;
+                        return;
+                    }
                 }
                 while (Connected)
                 {
