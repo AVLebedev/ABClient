@@ -75,8 +75,6 @@ namespace ABClient
                     ipAddr = addr[i];
                 }
                 int port = 1234;
-                // Конвертируем адрес
-                //ipAddr = IPAddress.Parse(ip);
                 // Старт соеднинения
                 tcpServer = new TcpClient();
                 tcpServer.Connect(ipAddr, port);
@@ -201,14 +199,7 @@ namespace ABClient
                 }
                 while (Connected)
                 {
-                    //try
-                    //{
-                        serverResponse = srReceiver.ReadLine();
-                    //}
-                    //catch (IOException e)
-                    //{
-                    //    return;
-                    //}
+                    serverResponse = srReceiver.ReadLine();
                 }
             }
             catch (IOException e)

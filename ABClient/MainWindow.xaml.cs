@@ -33,12 +33,10 @@ namespace ABClient
                 messageLabel.Visibility = System.Windows.Visibility.Hidden;
                 timeLabel.Visibility = System.Windows.Visibility.Hidden;
                 secondsLabel.Visibility = System.Windows.Visibility.Hidden;
-                //portTextBox.Text = port;
-                //addrTextBox.Text = serverIp;
-                //logText.Content = MessageConsts.StartConnecting;
 
                 connection = new ConnectWorker();
                 connection.message = clientId.ToString() + MessageConsts.ConnectMessage;
+                logText.Content = MessageConsts.NoConnection;
             }
             else
             {
@@ -49,7 +47,6 @@ namespace ABClient
 
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
         byte time;
-        //const string serverIp = "192.168.1.1";
         const string port = "1234";
 
         string id { get; set; }
